@@ -267,9 +267,15 @@
                                             <li>
                                                 <a href='/page-account'><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                             </li>
+                                            {% if register.user.is_authenticated %}
                                             <li>
-                                                <a href='/page-login'><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                                <a href=' {% url "userauths:sign-out" %} '><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
                                             </li>
+                                            {% else %}
+                                            <li>
+                                                <a href=' {% url "userauths:sign-in" %} '><i class="fi fi-rs-sign-in mr-10"></i>Sign in</a>
+                                            </li>
+                                            {% endif %}
                                         </ul>
                                     </div>
                                 </div>
@@ -949,7 +955,7 @@
                     <div class="footer-bottom"></div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6">
-                    <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
+                    <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Walty</strong> - All rights reserved</p>
                 </div>
                 <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                     <div class="hotline d-lg-inline-flex mr-30">
