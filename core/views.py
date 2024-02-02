@@ -1,5 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import render
+from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList, Address
 
 def index(request):
-    return render(request, 'core/index.html')
+    # products = Product.objects.all()
+    products = Product.objects.filter(product_status="published", featured=True)
+
+    context = {
+        "products": products
+    }
+    return render(request, 'core/index.html', context)
