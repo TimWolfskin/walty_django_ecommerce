@@ -88,7 +88,7 @@ class Product(models.Model):
     old_price = models.DecimalField(max_digits=9999999999999999, decimal_places=2, default="2.99")
 
     specifications = models.TextField(null=True, blank=True)
-    tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
+    # tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
     product_status = models.CharField(choices=STATUS, max_length=10, default='in_review')
 
     status = models.BooleanField(default=True)
@@ -141,6 +141,7 @@ class CartOrder(models.Model):
 
 class CartOrderItems(models.Model):
     order = models.ForeignKey(CartOrder, on_delete=models.CASCADE)
+    invoice_no = models.CharField(max_length=200)
     product_status = models.CharField(max_length=200)
     item = models.CharField(max_length=200)
     image = models.CharField(max_length=200)
@@ -165,7 +166,7 @@ class ProductReveiw(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     review = models.TextField()
-    rating = models.CharField(choices=RATING, default=None)
+    rating = models.CharField(choices=RATING, max_length=50, default=None)
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
