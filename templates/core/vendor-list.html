@@ -89,7 +89,7 @@
                         </div>
                         <div class="vendor-img-action-wrap">
                             <div class="vendor-img">
-                                <a href='/vendor-details-1'>
+                                <a href='{% url "core:vendor-detail" vendor.vid %} '>
                                     <img class="default-img" src=" {{vendor.image.url}} " alt="" />
                                 </a>
                             </div>
@@ -102,7 +102,7 @@
                                 <div class="product-category">
                                     <span class="text-muted">Since {{vendor.date|date:"Y"}} </span>
                                 </div>
-                                <h4 class="mb-5"><a href='/vendor-details-1'> {{vendor.title}} </a></h4>
+                                <h4 class="mb-5"><a href=' {% url "core:vendor-detail" vendor.vid %} '> {{vendor.title}} </a></h4>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -114,7 +114,7 @@
                                         <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span> {{vendor.address}} </span></li>
                                         <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call Us:</strong><span> {{vendor.contact}} </span></li>
                                     </ul>
-                                    <a class='btn btn-xs' href='/vendor-details-1'>Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                                    <a class='btn btn-xs' href='{% url "core:vendor-detail" vendor.vid %} '>Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -122,23 +122,6 @@
                 </div>
                 <!--end vendor card-->
                 {% endfor %}
-            </div>
-            <div class="pagination-area mt-20 mb-20">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
