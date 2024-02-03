@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Count
 from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList, Address
 
@@ -65,3 +65,16 @@ def vendor_detail_view(request, vid):
         "products": products
     }
     return render(request, "core/vendor-detail.html", context)
+
+
+
+def product_detail_view(request, pid):
+    product = Product.objects.get(pid=pid)
+
+    product_image = product.product_images.all()
+
+    context = {
+        "product": product,
+        "product_image": product_image
+    }
+    return render(request, 'core/product-detail.html', context)
