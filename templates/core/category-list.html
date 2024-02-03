@@ -97,7 +97,7 @@
 
                             <article class="col-xl-4 col-lg-6 col-md-6 text-center hover-up mb-30 animated">
                                 <div class="post-thumb">
-                                    <a href='/blog-post-right'>
+                                    <a href=' {% url "core:category-product-list" category.cid %} '>
                                         <img class="border-radius-15" src=" {{category.image.url}} " alt="" />
                                     </a>
                                     <div class="entry-meta">
@@ -107,7 +107,7 @@
                                 <div class="entry-content-2">
                                     {% comment %} <h6 class="mb-10 font-sm"><a class='entry-meta text-muted' href='/blog-category-grid'>Side Dish</a></h6> {% endcomment %}
                                     <h4 class="post-title mb-15">
-                                        <a href='/blog-post-right'> {{category.title}} </a>
+                                        <a href=' {% url "core:category-product-list" category.cid %}  '> {{category.title}} </a>
                                     </h4>
                                     <div class="entry-meta font-xs color-grey mt-10 pb-10">
                                         <div>
