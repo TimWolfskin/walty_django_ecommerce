@@ -4,7 +4,7 @@ from shortuuid.django_fields import ShortUUIDField
 from django.utils.html import mark_safe
 from userauths.models import User
 from taggit.managers import TaggableManager
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 STATUS_CHOICE = (
     ("process", "Processing"),
@@ -55,7 +55,7 @@ class Vendor(models.Model):
     title = models.CharField(max_length=100, default='Walty')
     image = models.ImageField(upload_to=user_directory_path, default='vendor.jpg')
     cover_image = models.ImageField(upload_to=user_directory_path, default='vendor.jpg')
-    description = models.TextField(null=True, blank=True, default='I am a Vendor')
+    description = RichTextUploadingField(null=True, blank=True, default='I am a Vendor')
 
     address = models.CharField(max_length=100, default='123 Main Street')
     contact = models.CharField(max_length=100, default='+123 (456) 789')
@@ -86,12 +86,12 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
     title = models.CharField(max_length=100, default='Fresh')
     image = models.ImageField(upload_to=user_directory_path, default='product.jpg')
-    description = models.TextField(null=True, blank=True, default='This is the product')
+    description = RichTextUploadingField(null=True, blank=True, default='This is the product')
 
     price = models.DecimalField(max_digits=9999999999999999, decimal_places=2, default="1.99")
     old_price = models.DecimalField(max_digits=9999999999999999, decimal_places=2, default="2.99")
 
-    specifications = models.TextField(null=True, blank=True)
+    specifications = RichTextUploadingField(null=True, blank=True)
     type = models.CharField(max_length=100, default='Organic', null=True, blank=True)
     stock_count = models.CharField(max_length=100, default='10', null=True, blank=True)
     life = models.CharField(max_length=100, default='100 Days', null=True, blank=True)
@@ -200,12 +200,12 @@ class WishList(models.Model):
         return self.product.title
 
 
-# class Address(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-#     address = models.CharField(max_length=100, null=True, blank=True)
-#     status = models.BooleanField(default=False)
+class Address(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    status = models.BooleanField(default=False)
 
 
-#     class Meta:
-#         verbose_name_plural = "Address"
+    class Meta:
+        verbose_name_plural = "Address"
     

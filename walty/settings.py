@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
     #third party
     'taggit',
+    'ckeditor',
 
     #apps
     'core',
@@ -128,3 +129,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'userauths.User'
+
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'

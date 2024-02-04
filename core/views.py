@@ -1,7 +1,7 @@
 # from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
 from taggit.models import Tag
-from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList #, Address
+from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList, Address
 
 
 def index(request):
