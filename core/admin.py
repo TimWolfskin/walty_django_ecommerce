@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList, Address
+from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList
 
 
 
@@ -49,7 +49,7 @@ class WishlistAdmin(admin.ModelAdmin):
 
 
 class AddressAdmin(admin. ModelAdmin):
-    list_display = ['user', 'address', 'status']
+    list_display = ['user' , 'status'] #, 'address'
 
 
 
@@ -61,4 +61,4 @@ admin.site.register(CartOrder, CartOrderAdmin)
 admin.site.register(CartOrderItems, CartOrderItemsAdmin)
 admin.site.register(ProductReveiw, ProductReviewAdmin)
 admin.site.register(WishList, WishlistAdmin)
-admin.site.register(Address, AddressAdmin)
+# admin.site.register(Address, AddressAdmin)

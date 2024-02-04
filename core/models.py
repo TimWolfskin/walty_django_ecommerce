@@ -79,7 +79,7 @@ class Vendor(models.Model):
     
 
 class Product(models.Model):
-    pid = ShortUUIDField(unique=True, length=10, max_length=20,  prefix='ven', alphabet='abcdefgh12345')
+    pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet='abcdefgh12345') 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="product")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
@@ -199,11 +199,12 @@ class WishList(models.Model):
         return self.product.title
 
 
-class Address(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    address = models.CharField(max_length=100, null=True)
-    status = models.BooleanField(default=False)
+# class Address(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+#     address = models.CharField(max_length=100, null=True, blank=True)
+#     status = models.BooleanField(default=False)
 
-    class Meta:
-        verbose_name_plural = "Address"
+
+#     class Meta:
+#         verbose_name_plural = "Address"
     

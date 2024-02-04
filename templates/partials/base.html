@@ -360,39 +360,7 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href='/shop-grid-right'>Shop <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href='/shop-grid-right'>Shop Grid – Right Sidebar</a></li>
-                                            <li><a href='/shop-grid-left'>Shop Grid – Left Sidebar</a></li>
-                                            <li><a href='/shop-list-right'>Shop List – Right Sidebar</a></li>
-                                            <li><a href='/shop-list-left'>Shop List – Left Sidebar</a></li>
-                                            <li><a href='/shop-fullwidth'>Shop - Wide</a></li>
-                                            <li>
-                                                <a href="#">Single Product <i class="fi-rs-angle-right"></i></a>
-                                                <ul class="level-menu">
-                                                    <li><a href='/shop-product-right'>Product – Right Sidebar</a></li>
-                                                    <li><a href='/shop-product-left'>Product – Left Sidebar</a></li>
-                                                    <li><a href='/shop-product-full'>Product – No sidebar</a></li>
-                                                    <li><a href='/shop-product-vendor'>Product – Vendor Info</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href='/shop-filter'>Shop – Filter</a></li>
-                                            <li><a href='/shop-wishlist'>Shop – Wishlist</a></li>
-                                            <li><a href='/shop-cart'>Shop – Cart</a></li>
-                                            <li><a href='/shop-checkout'>Shop – Checkout</a></li>
-                                            <li><a href='/shop-compare'>Shop – Compare</a></li>
-                                            <li>
-                                                <a href="#">Shop Invoice<i class="fi-rs-angle-right"></i></a>
-                                                <ul class="level-menu">
-                                                    <li><a href='/shop-invoice-1'>Shop Invoice 1</a></li>
-                                                    <li><a href='/shop-invoice-2'>Shop Invoice 2</a></li>
-                                                    <li><a href='/shop-invoice-3'>Shop Invoice 3</a></li>
-                                                    <li><a href='/shop-invoice-4'>Shop Invoice 4</a></li>
-                                                    <li><a href='/shop-invoice-5'>Shop Invoice 5</a></li>
-                                                    <li><a href='/shop-invoice-6'>Shop Invoice 6</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                        <a href=" {% url "core:product-list" %} ">Shop</a>
                                     </li>
                                     <li>
                                         <a href="#">Vendors <i class="fi-rs-angle-down"></i></a>
@@ -751,7 +719,7 @@
                 <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by Timur Aliev</div>
             </div>
         </div>
-    </div>
+    </div> 
     <!--End header-->
 
     {% block content %}{% endblock content %}
