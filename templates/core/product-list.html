@@ -29,18 +29,13 @@
                                 <h5 class="mb-30">By Categories</h5>
                                 <div class="categories-dropdown-wrap font-heading">
                                     <ul>
+                                        {% for category in categories %}
                                         <li>
-                                            <a href='/shop-grid-right'> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks and Dairies</a>
+                                            <input class="form-check-input filter-checkbox" data-filter="category" type="checkbox" name="checkbox" id="exampleCheckbox1" value=" {{category.id}} " />
+                                            &nbsp;&nbsp;
+                                            <a href=' {% url "core:category-product-list" category.cid %} '> <img src=" {{category.image.url}} " alt="" /> {{category.title}} </a>
                                         </li>
-                                        <li>
-                                            <a href='/shop-grid-right'> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing &amp; beauty</a>
-                                        </li>
-                                        <li>
-                                            <a href='/shop-grid-right'> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods &amp; Toy</a>
-                                        </li>
-                                        <li class="mb-0">
-                                            <a href='/shop-grid-right'> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a>
-                                        </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
@@ -49,50 +44,14 @@
                             <div class="card">
                                 <h5 class="mb-30">By Vendors</h5>
                                 <div class="d-flex">
-                                    <div class="custome-checkbox mr-80">
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox1"><span>Aldi</span></label>
+                                    <div class="customeee-checkbox mr-80">
+                                        {% for vendor in vendors %}
+                                        <input class="form-check-input filter-checkbox" type="checkbox" data-filter="vendor" name="checkbox" id="exampleCheckbox2" value=" {{vendor.id}} " />
+                                        <label class="form-check-label" for="exampleCheckbox2"><span> {{vendor.title}} </span></label>
                                         <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox2"><span>Adidas</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox3"><span>Burbe</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox4" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox4"><span>Chanel</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox5" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox5"><span>Prada</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox6" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox6"><span>Kroger</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox7" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox7"><span>Traders</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox8" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox8"><span>Publix</span></label>
+                                        {% endfor %}
                                     </div>
-                                    <div class="custome-checkbox">
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox11"><span>Harris</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox21" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox21"><span>Costco</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox31" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox31"><span>Targets</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox41" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox41"><span>Green Tea</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox51" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox51"><span>iSnack</span></label>
-                                        <br />
-                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox61" value="" />
-                                        <label class="form-check-label" for="exampleCheckbox61"><span>Pambox</span></label>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -207,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row product-grid">
+                <div class="row product-grid" id="filtered-product">
                     {% for product in products %}
                         
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">

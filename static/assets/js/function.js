@@ -1,8 +1,9 @@
 
 
-const monnthNames = ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug',
+const monthNames = ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug',
  'Sept', 'Oct', 'Now', 'Dec'
 ];
+
 
 
 
@@ -10,7 +11,7 @@ $("#commentForm").submit(function(e){
     e.preventDefault();
 
     let dt = new Date();
-    let time = dt.getDay() + " " + monnthNames[dt.getUTCMonth()] + ", " + dt.getFullYear()
+    let time = dt.getDay() + " " + monthNames[dt.getUTCMonth()] + ", " + dt.getFullYear()
 
     $.ajax({
         data: $(this).serialize(),
@@ -53,5 +54,39 @@ $("#commentForm").submit(function(e){
                     $(".comment-list").prepend(_html)
             }
         }
+    })
+})
+
+$(document).ready(function () {
+    $(".filter-checkbox").on("click", function(){
+        console.log("A checkbox have been clicked");
+
+        let filter_object = {}
+
+        $("filter-checkbox").each(function(){
+            let filter_value = $(this).val()
+            let filter_key = $(this).data("filter")
+
+            // console.log("filter value is:", filter_value);
+            // console.log("filter key is:", filter_key)
+
+            filter_object[filter_key] = Array.from(document.querySelectorAll('input[data-filter=' + filter_key + ']:checked')).map(function(element){
+                return element.value
+            })
+        })
+        console.log("filter object is: ", filter_object)
+        $.ajax({
+            url: '/filter-products',
+            data: filter_object,
+            dataType: 'json',
+            beforeSend: function(){
+                console.log("Trying to filter product...");
+            },
+            success: function(response){
+                console.log(response)
+                console.log("Data filtered successfully...");
+                $("#filtered-product").html(response.data)
+            }
+        })
     })
 })
