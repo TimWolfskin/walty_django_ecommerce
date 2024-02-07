@@ -89,4 +89,27 @@ $(document).ready(function () {
             }
         })
     })
+    $('#max_price').on("blur", function(){
+        let min_price = $(this).attr("min")
+        let max_price = $(this).attr("max")
+        let current_price = $this().val()
+
+        // console.log('current price is: ', current_price)
+        // console.log('Max price is: ', max_price)
+        // console.log('min price is: ', min_price)
+
+        if(current_price < parseInt(min_price) || current_price > parseInt(max_price)) {
+            min_price = Math.round(min_price * 100) / 100
+            max_price = Math.round(max_price * 100) / 100
+
+
+            alert("Price must between $" + min_price + 'and $' + max_price)
+            $(this).val(min_price)
+            $('#range').val(min_price)
+
+            $(this).focus()
+
+            return false
+        }
+    })
 })
