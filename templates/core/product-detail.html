@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
-                                                <span class="current-price text-brand">$ {{product.price}} </span>
+                                                <span class="current-price text-brand">$</span><span class="current-price text-brand" id="current-product-price">{{product.price}} </span>
                                                 <span>
                                                     <span class="save-price font-md color3 ml-15">-{{product.get_precentage|floatformat:0}}% Off</span>
                                                     <span class="old-price font-md ml-15">$ {{product.old_price}} </span>
@@ -73,13 +73,23 @@
                                             <p class="font-lg"> {{product.description|truncatechars:150}} </p>
                                         </div>
                                         <div class="detail-extralink mb-50">
-                                            <div class="detail-qty border radius">
+                                            {% comment %} <div class="detail-qty border radius">
                                                 <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
                                                 <span class="qty-val">1</span>
                                                 <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                            </div>
+                                            </div> {% endcomment %}
+                                            <input type="number" value="1" name="" id="product-quantity" class="w-25">
+                                            <br>
                                             <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                {% comment %} <input type="hidden" value="product.id" class="product-id" name="" id="">
+                                                <input type="hidden" value="product.title" class="product-title" name="" id=""> {% endcomment %}
+                                                <input type="hidden" value=" 1 " id="product-quantity" class="product-quantity-{{product.id}}">
+                                                <input type="hidden" class="product-pid-{{product.id}}" value="{{product.pid}}">
+                                                <input type="hidden" class="product-image-{{product.id}}" value="{{product.image.url}}">
+                                                <input type="hidden" class="product-id-{{product.id}}" value="{{product.id}}">
+                                                <input type="hidden" class="product-title-{{product.id}}" value="{{product.title}}">
+
+                                                <button type="submit" class='button button-add-to-cart add-to-cart-btn' data-index="{{product.id}}" id="add-to-cart-btn"><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
                                                 <a aria-label='Add To Wishlist' class='action-btn hover-up' href='/shop-wishlist'><i class="fi-rs-heart"></i></a>
                                                 <a aria-label='Compare' class='action-btn hover-up' href='/shop-compare'><i class="fi-rs-shuffle"></i></a>
                                             </div>
@@ -328,31 +338,13 @@
                                                                 <div class="col-12">
                                                                     <div class="form-group">
                                                                         {{review_form.review}}
-                                                                        {% comment %} <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea> {% endcomment %}
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <div class="form-group">
                                                                         {{review_form.rating}}
-                                                                        {% comment %} <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea> {% endcomment %}
                                                                     </div>
                                                                 </div>
-                                                                {% comment %} <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
-                                                                    </div>
-                                                                </div> {% endcomment %}
-                                                                {% comment %} <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
-                                                                    </div>
-                                                                </div>
-                                                            </div> {% endcomment %}
                                                             <div class="form-group">
                                                                 <button type="submit" class="button button-contactForm">Submit Review</button>
                                                             </div>
@@ -399,7 +391,7 @@
                                                         <span> </span>
                                                     </div>
                                                     <div class="product-price">
-                                                        <span>$ {{product.price}} </span>
+                                                        <span>$</span><span class="current-price current-product-price-{{product.id}}">{{product.price}} </span>
                                                         <span class="old-price">$ {{product.old_price}} </span>
                                                     </div>
                                                 </div>
