@@ -1,9 +1,3 @@
-{% extends "partials/base.html" %}
-{% load static %}
-
-
-
-{% block content %}
 <main class="main" id="cart-list">
     <div class="page-header breadcrumb-wrap">
         <div class="container">
@@ -59,7 +53,7 @@
                                     <h4 class="text-brand">$ {% widthratio item.price 1 item.qty %} </h4>
                                 </td>
                                 <td class="action text-center" data-title="Refresh"><a href="#" class="text-body"><i class="fi-rs-refresh"></i></a></td>
-                                <td class="action text-center" data-title="Remove"><button class="text-body delete-product" data-product="{{product_id}}">Remove</button></td>
+                                <td class="action text-center" data-title="Remove"><button class="text-body delete-product" data-product=" {{product_id}} "><i class="fi-rs-trash"></i></button></td>
                             </tr>
 
                             {% endfor %}
@@ -399,4 +393,3 @@
         </div>
     </div>
 </main>
-{% endblock content %}
