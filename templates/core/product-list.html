@@ -193,7 +193,8 @@
                                 </div>
                                 <div class="product-card-bottom">
                                     <div class="product-price">
-                                        <span>$ {{product.price}} </span>
+                                        {% comment %} <span>$ {{product.price}} </span> {% endcomment %}
+                                        <span class="current-price text-brand">$</span><span class="current-price text-brand current-product-price-{{product.id}}" >{{product.price}} </span>
                                         <span class="old-price">$ {{product.old_price}} </span>
                                     </div>
                                     <div class="add-cart">
