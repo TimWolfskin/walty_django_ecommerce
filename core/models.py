@@ -7,7 +7,7 @@ from taggit.managers import TaggableManager
 from ckeditor_uploader.fields import RichTextUploadingField
 
 STATUS_CHOICE = (
-    ("process", "Processing"),
+    ("processing", "Processing"),
     ("shipped", "Shipped"),
     ("delivered", "Delivered"),
 )
@@ -157,8 +157,12 @@ class CartOrderItems(models.Model):
     price = models.DecimalField(max_digits=9999999999999999, decimal_places=2, default="1.99")
     total = models.DecimalField(max_digits=9999999999999999, decimal_places=2, default="1.99")
 
+
     class Meta:
         verbose_name_plural = "Cart Order Items"
+
+    def category_image(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' %(self.image.url))
 
     def order_img(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" />' %(self.image))
