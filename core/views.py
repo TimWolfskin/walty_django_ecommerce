@@ -339,8 +339,23 @@ def payment_failed_view(request):
 
 def customer_dashboard(request):
     orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    address = Address.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        address = request.POST.get("address")
+        mobile = request.POST.get("mobile")
+
+        new_address = Address.objects.create(
+            user=request.user,
+            address=address,
+            mobile=mobile,
+        )
+        messages.success(request, "Adress added Successfully")
+        return redirect("core:dashboard")
+    
     context = {
-        "orders": orders
+        "orders": orders,
+        "address": address
     }
     return render(request, 'core/dashboard.html', context)
 
