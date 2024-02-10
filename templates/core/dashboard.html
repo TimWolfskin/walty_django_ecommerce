@@ -152,9 +152,16 @@
                                                     <address>
                                                         <p> {{adres.address}} </p>
                                                         <p> {{adres.mobile}} </p>
-                                                        <p> {{adres.status}} </p>
+                                                        {% comment %} <p> {{adres.id}} </p>
+                                                        <p> {{adres.status}} </p> {% endcomment %}
                                                     </address>
-                                                    <button class="btn">Make Default</button>
+                                                    {% if adres %}
+                                                    <i class="check{{adres.id}} " data-address-id=" {{adres.id}} check " >success</i>
+                                                    <button data-address-id="{{adres.id}}" style="display: none;" class="btn make-default-address button{{adres.id}} action_btn ">Make Default</button>
+                                                    {% else %}
+                                                    <i class="check{{adres.id}} " data-address-id=" {{adres.id}} check " >success</i>
+                                                    <button data-address-id="{{adres.id}}"  class="btn make-default-address button{{adres.id}} action_btn ">Make Default</button>
+                                                    {% endif %}
                                                 </div>
                                                 {% endfor %}
                                             </div>
