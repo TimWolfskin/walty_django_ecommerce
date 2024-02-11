@@ -22,6 +22,9 @@
                             <div class="dashboard-menu">
                                 <ul class="nav flex-column" role="tablist">
                                     <li class="nav-item">
+                                        <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Profile</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
                                     </li>
                                     <li class="nav-item">
@@ -44,7 +47,32 @@
                         </div>
                         <div class="col-md-9">
                             <div class="tab-content account dashboard-content pl-50">
-                                <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="mb-0">My Profile!</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="">
+                                                <span><img src=" {{profile.image.url}} " style="width: 150px; object-fit:cover; border-radius: 50%; height: 150px;" alt=""></span>
+                                            </div>
+                                            <div class="">
+                                                <span><input class="mb-2" type="text" value="Name - {{profile.full_name}}"></span>
+                                                <span><input class="mb-2" type="text" value="Bio - {{profile.bio}}"></span>
+                                                <span><input class="mb-2" type="text" value="Phone - {{profile.phone}}"></span>
+                                                {% if profile.verifed == True %}
+                                                <i>Check</i>
+                                                {% else %}
+                                                <span>Not verifed</span><i>X</i>
+                                                {% endif %}
+                                                <div class="">
+                                                    <button class="btn btn-success">Edit Profile</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 class="mb-0">Hello {{request.user|title}} !</h3>
