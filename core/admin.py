@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList, Address
+from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList_model, Address
 
 
 
@@ -62,5 +62,5 @@ admin.site.register(Vendor, VendorAdmin)
 admin.site.register(CartOrder, CartOrderAdmin)
 admin.site.register(CartOrderItems, CartOrderItemsAdmin)
 admin.site.register(ProductReveiw, ProductReviewAdmin)
-admin.site.register(WishList, WishlistAdmin)
+admin.site.register(WishList_model, WishlistAdmin)
 admin.site.register(Address, AddressAdmin)

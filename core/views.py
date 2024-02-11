@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from taggit.models import Tag
 from django.db.models import Avg #Count
 from django.shortcuts import render, redirect, get_object_or_404
-from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList, Address
+from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList_model, Address
 from core.forms import ProductReviewForm
 from django.template.loader import render_to_string
 from django.contrib import messages
@@ -382,3 +382,36 @@ def make_address_default(request):
     Address.objects.update(status=False)
     Address.objects.filter(id=id).update(status=True)
     return JsonResponse({"boolean": True})
+
+
+
+def wishlist_view(request):
+    wishlist = WishList_model.objects.all()
+
+    context = {
+        "wishlist": wishlist
+    }
+    return render(request, 'core/wishlist.html', context)
+
+
+def add_to_wishlist(request):
+    product_id = request.GET['id']
+    product = Product.objects.get(id=product_id)
+
+    context = {}
+    wishlist_count = WishList_model.objects.filter(product=product, user=request.user).count()
+    print(wishlist_count)
+
+    if wishlist_count > 0:
+        context = {
+            "bool": True
+        }
+    else:
+        new_wishlist = WishList_model.objects.create(
+            product=product,
+            user=request.user
+        )
+        context = {
+            "bool": True
+        }
+        return JsonResponse(context)
