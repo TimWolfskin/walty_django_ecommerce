@@ -453,3 +453,7 @@ def remove_wishlist(request):
     wishlist_json = serializers.serialize("json", wishlist)
     t = render_to_string("core/async/wishlist-list.html", context)
     return JsonResponse({"data": t, "wish":wishlist_json})
+
+
+
+
