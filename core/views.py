@@ -1,7 +1,7 @@
 # from django.db.models import Count
 from django.http import HttpResponse, JsonResponse
 from taggit.models import Tag
-from django.db.models import Avg #Count
+from django.db.models import Avg, Count
 from django.shortcuts import render, redirect, get_object_or_404
 from core.models import Product, Category, Vendor, CartOrder, CartOrderItems, ProductImages, ProductReveiw, WishList_model, Address
 from userauths.models import Profile
@@ -14,6 +14,8 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
 from django.core import serializers
+import calendar
+from django.db.models.functions import ExtractMonth
 
 
 def index(request):
@@ -345,14 +347,18 @@ def payment_failed_view(request):
 
 
 def customer_dashboard(request):
-    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    orders_list = CartOrder.objects.filter(user=request.user) #.order_by("-id")
     address = Address.objects.filter(user=request.user)
 
     profile = Profile.objects.get(user=request.user)
 
-    # orders = CartOrder.objects.annotate(month=ExtraMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
-    # month = []
-    # total_orders = []
+    orders = CartOrder.objects.annotate(month=ExtractMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
+    month = []
+    total_orders = []
+
+    if i in orders:
+        month.append(calendar.month_name[i["month"]])
+        total_orders.append(i["count"])
 
     if request.method == "POST":
         address = request.POST.get("address")
@@ -367,9 +373,12 @@ def customer_dashboard(request):
         return redirect("core:dashboard")
     
     context = {
-        "profile": profile,
         "orders": orders,
-        "address": address
+        "profile": profile,
+        "orders_list": orders_list,
+        "address": address,
+        "month": month,
+        "total_orders": total_orders
     }
     return render(request, 'core/dashboard.html', context)
 

@@ -83,6 +83,9 @@
                                                 manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a>
                                             </p>
                                         </div>
+                                        <div class="">
+                                            <canvas id="myChart"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
@@ -104,7 +107,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {% for order in orders %}
+                                                        {% for order in orders_list %}
                                                         <tr>
                                                             <td>INVOICE_NO-{{order.id}} </td>
                                                             <td> {{order.order_date}} </td>
@@ -250,5 +253,33 @@
     </div>
 </main>
 
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const myChart = new Chart(
+    document.getElementById("myChart")
+    config
+  )
+</script>
 
 {% endblock content %}
