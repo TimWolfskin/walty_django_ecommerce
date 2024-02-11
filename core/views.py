@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
+from django.core import serializers
 
 
 def index(request):
@@ -423,3 +424,23 @@ def add_to_wishlist(request):
             "bool": True
         }
         return JsonResponse(context)
+    
+
+
+
+def remove_wishlist(request):
+    pid = request.GET['id']
+    wishlist = WishList_model.objects,filter(user=request.user)
+    wishlist_d = WishList_model.objects.get(id=pid)
+    delete_product = wishlist_d.delete()
+
+    product = WishList_model.objects.get(id=pid)
+    product.objects.delete()
+
+    context = {
+        "bool": True,
+        "wishlist": wishlist
+    }
+    wishlist_json = serializers.serialize("json", wishlist)
+    t = render_to_string("core/async/wishlist-list.html", context)
+    return JsonResponse({"data": t, "wish":wishlist_json})

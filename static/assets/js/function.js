@@ -260,6 +260,25 @@ $(document).on("click", ".add-to-wishlist", function(){
   })
 })
 
+$(document).on("click", ".delete-wishlist-product", function(){
+  let wishlist_id = $(this).attr("data-wishlist-product")
+  let this_val = $(this)
+
+  $.ajax({
+    url: "/remove-from-wishlist",
+    data: {
+      "id": wishlist_id
+    },
+    dataType: "json",
+    beforeSend: function(){
+      console.log("deleting product from wishlist")
+    },
+    success: function(response){
+      $("#wishlist-list").html(response.data)
+    }
+  })
+})
+
 })
 
 
