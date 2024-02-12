@@ -9,8 +9,8 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ['username', 'email', 'bio']
 
 
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'phone', 'bio']
+# class ProfileAdmin(admin.ModelAdmin):
+#     list_display = ['user', 'full_name', 'phone', 'bio']
 
 
 
